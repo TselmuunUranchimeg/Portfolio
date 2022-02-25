@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"portfolio/handlers"
 	"portfolio/middlewares"
 
@@ -18,5 +19,5 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Println("Server has started!!!")
-	log.Fatal(http.ListenAndServe("localhost:8000", finalHandler))
+	log.Fatal(http.ListenAndServe(os.Getenv("PORT"), finalHandler))
 }
