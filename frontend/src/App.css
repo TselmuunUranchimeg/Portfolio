@@ -1,0 +1,7 @@
+* {
+    @apply font-[PressStart2P];
+}
+
+.div-container {
+    @apply h-[calc(100%_-_15px)] md:h-full overflow-y-auto;
+}

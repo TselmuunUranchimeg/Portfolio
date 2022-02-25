@@ -1,0 +1,54 @@
+.skills {
+    @apply w-full box-border p-5;
+    @apply 2xl:p-12;
+}
+
+.skill {
+    @apply flex flex-col w-full justify-between mb-6;
+    @apply md:flex-row md:h-5 md:items-center;
+    @apply 2xl:h-7 2xl:mb-9;
+}
+.skill-header {
+    @apply md:w-[35%];
+    @apply 2xl:text-xl;
+}
+.skill-bar {
+    @apply relative bg-black h-5;
+    @apply md:w-[65%] md:h-full;
+}
+
+.specialty {
+    @apply w-full;
+}
+.specialty h1 {
+    @apply text-lg my-5;
+    @apply fold:text-2xl;
+    @apply 2xl:text-3xl 2xl:my-7;
+}
+ul li {
+    @apply 2xl:text-xl;
+}
+
+.w-html {
+    @apply w-[85%];
+}
+
+.w-go {
+    @apply w-[80%];
+}
+
+.w-node {
+    @apply w-[75%];
+}
+
+.w-csharp {
+    @apply w-[65%];
+}
+
+.w-python {
+    @apply w-[60%];
+}
+
+li {
+    @apply my-2;
+}

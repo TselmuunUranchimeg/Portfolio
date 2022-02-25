@@ -1,0 +1,35 @@
+.information-container {
+    @apply absolute w-screen h-screen flex justify-center items-center;
+}
+
+.information {
+    @apply w-[90%] bg-[#F8C37D]/[85%] h-[85%];
+    @apply border-[#906B3A] border-[9px] flex flex-col;
+    @apply md:w-4/5;
+}
+
+.information-header {
+    @apply flex items-center justify-center border-b-[#7C4906]/60 border-b-[10px] relative;
+}
+.information-header svg {
+    @apply right-0 top-0 absolute bg-[#825B27] text-gray-900 text-[44px] cursor-pointer;
+    @apply mobile:text-[48px];
+}
+
+.information-bottom-half {
+    @apply flex flex-col h-[calc(100%_-_48px)];
+    @apply md:h-full;
+    @apply lg:flex-row;
+}
+
+.information-option-list {
+    @apply flex border-black w-full overflow-auto;
+    @apply lg:flex-col lg:w-[30%] lg:h-full lg:border-r-[1px];
+}
+.information-option-list a {
+    @apply w-full border-[1px] border-black text-center text-sm py-5 duration-75 border-l-0;
+    @apply px-5 border-t-0;
+    @apply md:text-base md:px-1;
+    @apply lg:border-t-[1px];
+    @apply 2xl:text-2xl 2xl:py-8;
+}

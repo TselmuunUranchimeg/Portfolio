@@ -1,0 +1,17 @@
+.homepage {
+    @apply absolute w-screen h-screen flex flex-col items-center content-center;
+}
+
+.homepage h1 {
+    @apply text-2xl w-3/4 text-center mt-[50%];
+    @apply mobile:text-4xl mobile:mt-[32%];
+    @apply lg:mt-[14%];
+    @apply 2xl:text-6xl;
+}
+
+.homepage a {
+    @apply bg-orange-500 text-white py-3 px-6 mt-[4.5%] text-base;
+    @apply fold:text-xl fold:py-5 fold:px-10;
+    @apply lg:mt-[2.5%];
+    @apply 2xl:text-2xl 2xl:py-7 2xl:px-16;
+}

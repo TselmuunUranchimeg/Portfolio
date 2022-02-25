@@ -1,0 +1,48 @@
+.character {
+    @apply flex flex-col-reverse border-b-[1px] border-black h-auto;
+    @apply items-center box-border p-5 relative w-full;
+    @apply md:justify-between md:flex-row;
+    @apply lg:h-[40%];
+    @apply 2xl:p-12;
+}
+.character img {
+    @apply rounded-half w-[130px] h-[130px] object-cover;
+    @apply 2xl:w-[210px] 2xl:h-[210px] 2xl:right-12;
+}
+
+.character-table {
+    @apply text-lg w-[calc(100%_-_140px)] mt-5;
+    @apply mobile:mt-0;
+    @apply 2xl:w-[calc(100%_-_210px)];
+}
+
+.character-field {
+    @apply py-3 pr-10 font-bold hidden;
+    @apply mobile:block;
+    @apply lg:pr-10;
+}
+
+.character-value {
+    @apply text-center;
+    @apply mobile:text-right mobile:pr-10;
+}
+
+.character-field, .character-value {
+    @apply 2xl:text-2xl;
+}
+
+.character-description {
+    @apply box-border p-5 h-auto pb-0 overflow-y-auto;
+    @apply 2xl:pt-12 2xl:px-12;
+    @apply lg:h-[60%];
+}
+.character-description h1 {
+    @apply font-bold text-lg mb-4;
+    @apply fold:text-2xl;
+    @apply 2xl:text-4xl 2xl:mb-10;
+}
+.character-description p {
+    @apply text-base leading-loose;
+    @apply fold:text-lg;
+    @apply 2xl:text-3xl 2xl:leading-loose;
+}

@@ -1,0 +1,62 @@
+input, textarea {
+    @apply bg-[#D49035] placeholder-black/[50%] outline-none box-border p-4 my-3;
+    @apply 2xl:my-6 2xl:p-6 2xl:text-2xl;
+}
+textarea {
+    @apply resize-none h-56;
+    @apply md:h-[90%];
+    @apply lg:h-2/4;
+}
+
+.contact {
+    @apply w-full box-border p-5;
+    @apply 2xl:p-12;
+}
+.contact h1 {
+    @apply font-bold text-2xl mb-[1.5%];
+    @apply 2xl:text-4xl;
+}
+
+.contact-form {
+    @apply flex flex-col box-border;
+    @apply md:h-[85%];
+    @apply lg:pr-8;
+    @apply 2xl:pr-16;
+}
+.contact-form button {
+    @apply bg-orange-500 text-white py-3 mt-3;
+    @apply md:w-[28%];
+    @apply 2xl:py-6 2xl:text-2xl 2xl:w-[32%];
+}
+
+.modal-container {
+    @apply fixed w-screen h-screen top-0 left-0 bg-black/60;
+}
+
+.modal {
+    @apply bg-[#D49035] border-[8px] border-t-0 border-[#854d04] w-[78%];
+    @apply absolute left-1/2 -ml-[39%];
+    @apply box-border px-5 py-4 rounded-b-2xl;
+    @apply sm:w-[500px] sm:-ml-[250px];
+    @apply xl:w-[720px] xl:-ml-[360px];
+}
+.modal h1 {
+    @apply text-lg;
+    @apply xl:text-2xl;
+}
+.modal p {
+    @apply text-sm;
+    @apply xl:text-base;
+}
+
+.modal-icon {
+    @apply w-auto mr-3 hidden sm:block;
+}
+.modal-icon svg {
+    @apply h-full w-full;
+    @apply text-yellow-400;
+}
+
+.modal-text h1 {
+    @apply 2xl:text-2xl;
+}
