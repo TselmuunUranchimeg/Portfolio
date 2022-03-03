@@ -6,7 +6,9 @@ import (
 
 type Adapter func(http.Handler) http.Handler
 
-var adapters []Adapter = []Adapter{}
+var adapters []Adapter = []Adapter{
+	Limiter(),
+}
 
 func Adapt(mux http.Handler) http.Handler {
 	for _, middleware := range adapters {

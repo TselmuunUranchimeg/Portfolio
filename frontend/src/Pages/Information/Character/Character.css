@@ -5,9 +5,12 @@
     @apply lg:h-[40%];
     @apply 2xl:p-12;
 }
-.character img {
-    @apply rounded-half w-[130px] h-[130px] object-cover;
+.character div, .character img {
+    @apply w-[130px] h-[130px];
     @apply 2xl:w-[210px] 2xl:h-[210px] 2xl:right-12;
+}
+.character img {
+    @apply rounded-half object-cover;
 }
 
 .character-table {

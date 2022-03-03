@@ -67,7 +67,6 @@ const Contact = () => {
         if (modal.message !== "" && modal.isSuccessful !== null) {
             const interval = setInterval(() => {
                 setCount(prev => {
-                    console.log(prev);
                     let newValue = prev - 1;
                     if (newValue === 0) {
                         clearInterval(interval);
@@ -95,7 +94,7 @@ const Contact = () => {
     const saveMessage = async (e: FormEvent<HTMLFormElement>) => {
         try {
             e.preventDefault();
-            let postPromise = axios.post("http://localhost:8000/api/saveMessage", state);
+            let postPromise = axios.post("https://pixelportfolio.herokuapp.com/api/saveMessage", state);
             setModal(prev => {
                 return {...prev, isSuccessful: false};
             });

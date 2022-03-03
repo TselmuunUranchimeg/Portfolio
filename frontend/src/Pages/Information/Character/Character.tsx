@@ -1,7 +1,11 @@
+import { useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 import profile from "../../../images/Profile.jpg";
 import "./Character.css";
 
 const Character = () => {
+    const [state, setState] = useState<boolean>(false);
+
     return (
         <div className = "w-full div-container">
             <div className = "character">
@@ -23,7 +27,21 @@ const Character = () => {
                         </tr>
                     </tbody>
                 </table>
-                <img alt = "Profile" src = {profile} className = "animate-fadeIn" />
+                <div 
+                    className = {
+                        `${
+                            state ? "hidden" : "block"
+                        } flex justify-center content-center items-center`
+                    }
+                >
+                    <CircularProgress />
+                </div>
+                <img 
+                    alt = "Profile" 
+                    src = {profile} 
+                    className = {`animate-fadeIn ${state ? "block" : "hidden"}`}
+                    onLoad = {() => setState(true)}
+                />
             </div>
             <div className = "character-description">
                 <h1>Description</h1>

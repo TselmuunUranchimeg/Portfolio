@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 
@@ -35,17 +36,25 @@ func SaveMessage(rw http.ResponseWriter, r *http.Request) {
 		Subject: "Success",
 		Message: "Successfully sent the message, will contact you within 24 hours.",
 	}
-	rw.WriteHeader(http.StatusOK)
+	resStatus := http.StatusOK
 	if sendErr != nil || sendRes.StatusCode >= 300 {
+		if sendErr != nil {
+			log.Println(sendErr)
+		}
+		log.Println(sendRes)
 		res = Response{
 			Subject: "Oops",
 			Message: "Something went wrong with the server, please try again few minutes later.",
 		}
-		rw.WriteHeader(http.StatusInternalServerError)
+		resStatus = http.StatusInternalServerError
 	}
 	byteData, marshalErr := json.Marshal(&res)
 	if marshalErr != nil {
+		rw.WriteHeader(http.StatusBadRequest)
+		rw.Write([]byte("Can't get response!!!"))
 		fmt.Println(marshalErr)
+		return
 	}
+	rw.WriteHeader(resStatus)
 	rw.Write(byteData)
 }

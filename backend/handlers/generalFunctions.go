@@ -13,6 +13,8 @@ import (
 
 const Build = "build"
 
+var Fs = http.FileServer(http.Dir("build"))
+
 type Route struct {
 	pattern *regexp.Regexp
 	method  string
@@ -54,7 +56,8 @@ func DecodeReqBody(body interface{}, r *http.Request, rw http.ResponseWriter) er
 }
 
 func ServeFrontend(rw http.ResponseWriter, r *http.Request) {
-	_, statErr := os.Stat(Build + path.Clean(r.URL.Path))
+	p := r.URL.Path
+	_, statErr := os.Stat("build" + path.Clean(p))
 	if statErr != nil {
 		if !os.IsNotExist(statErr) {
 			panic(statErr)

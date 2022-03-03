@@ -7,7 +7,6 @@ import (
 var routes []Route = []Route{
 	NewRoute("/api/saveMessage", http.MethodPost, SaveMessage),
 }
-var Fs http.Handler = http.FileServer(http.Dir(Build))
 
 func RootHandler(rw http.ResponseWriter, r *http.Request) {
 	p := r.URL.Path

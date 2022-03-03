@@ -1,12 +1,17 @@
-import { useState, useEffect, MouseEvent, Dispatch, SetStateAction } from "react";
+import {
+    useState, 
+    useEffect, 
+    MouseEvent, 
+    Dispatch, 
+    SetStateAction, 
+    Suspense, 
+    lazy 
+} from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
+import CircularProgress from "@mui/material/CircularProgress";
 import "./Information.css";
-import Character from "./Character/Character";
-import Skills from "./Skills/Skills";
-import Projects from "./Projects/Projects";
-import Contact from "./Contact/Contact";
 
 interface SidebarOptionInterface {
     text: string;
@@ -15,6 +20,11 @@ interface SidebarOptionInterface {
     setState: Dispatch<SetStateAction<string>>
     className?: string;
 }
+
+const Character = lazy(() => import("./Character/Character"));
+const Skills = lazy(() => import("./Skills/Skills"));
+const Projects = lazy(() => import("./Projects/Projects"));
+const Contact = lazy(() => import("./Contact/Contact"));
 
 const SidebarOption = ({text, path, state, setState, className}: SidebarOptionInterface) => {
     const click = (e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>) => {
@@ -39,6 +49,14 @@ const SidebarOption = ({text, path, state, setState, className}: SidebarOptionIn
     )
 }
 
+const LoadingInInfo = () => {
+    return (
+        <div className = "w-full h-full flex justify-center items-center content-center">
+            <CircularProgress />
+        </div>
+    )
+}
+
 const Information = () => {
     const [state, setState] = useState<string>("");
     const navigate = useNavigate();
@@ -57,7 +75,7 @@ const Information = () => {
             <div className = "information">
                 <div className = "information-header">
                     <h1 className = "mobile:text-2xl text-[#825B27] py-2 text-xl">
-                        {window.innerWidth > 300 ? "Information" : "Info"}
+                        {window.innerWidth > 400 ? "Information" : "Info"}
                     </h1>
                     <CloseIcon onClick = {() => {navigate("/")}}/>
                 </div>
@@ -90,12 +108,14 @@ const Information = () => {
                         />
                     </div>
                     <div className = "w-full div-container">
-                        <Routes>
-                            <Route path = "character" element = {<Character />} />
-                            <Route path = "skills" element = {<Skills />}/>
-                            <Route path = "projects" element = {<Projects />} />
-                            <Route path = "contact" element = {<Contact />} />
-                        </Routes>
+                        <Suspense fallback = {<LoadingInInfo />}>
+                            <Routes>
+                                <Route path = "character" element = {<Character />} />
+                                <Route path = "skills" element = {<Skills />}/>
+                                <Route path = "projects" element = {<Projects />} />
+                                <Route path = "contact" element = {<Contact />} />
+                            </Routes>
+                        </Suspense>
                     </div>
                 </div>
             </div>
