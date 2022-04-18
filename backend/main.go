@@ -14,5 +14,5 @@ func main() {
 	mux.HandleFunc("/", handlers.RootHandler)
 	finalHandler := middlewares.Adapt(mux)
 	fmt.Println("Server has started!!!")
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), finalHandler))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("PORT")), finalHandler))
 }

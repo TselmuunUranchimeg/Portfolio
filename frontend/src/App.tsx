@@ -2,7 +2,6 @@ import { Suspense, lazy} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./App.css";
-import background from "./images/Background.jpg";
 
 const LoadingScreen = () => {
   return (
@@ -20,7 +19,7 @@ function App() {
     <Suspense fallback = {<LoadingScreen />}>
       <div className = {`animate-fadeIn`}>
         <img 
-          src = {background}
+          src = "https://pixelportfolio.herokuapp.com/api/images/background.jpg"
           alt = "RPG Field"
           className = "w-screen h-screen absolute object-cover"
         />

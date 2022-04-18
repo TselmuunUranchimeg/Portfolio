@@ -1,6 +1,5 @@
 import { useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
-import profile from "../../../images/Profile.jpg";
 import "./Character.css";
 
 const Character = () => {
@@ -38,7 +37,7 @@ const Character = () => {
                 </div>
                 <img 
                     alt = "Profile" 
-                    src = {profile} 
+                    src = "https://pixelportfolio.herokuapp.com/api/images/profile.jpg"
                     className = {`animate-fadeIn ${state ? "block" : "hidden"}`}
                     onLoad = {() => setState(true)}
                 />

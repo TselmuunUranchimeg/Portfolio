@@ -6,6 +6,7 @@ import (
 
 var routes []Route = []Route{
 	NewRoute("/api/saveMessage", http.MethodPost, SaveMessage),
+	NewRoute("/api/images/([^/]+)", http.MethodGet, ServeImage),
 }
 
 func RootHandler(rw http.ResponseWriter, r *http.Request) {
