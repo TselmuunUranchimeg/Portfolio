@@ -1,0 +1,7 @@
+.input {
+    @apply font-normal w-full border-gray-500 border-[1px] p-2 mb-5;
+}
+
+.click {
+    @apply active:translate-x-[2px] active:translate-y-[2px];
+}
