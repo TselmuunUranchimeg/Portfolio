@@ -33,7 +33,13 @@ const history: Array<PastItemInterface> = [
 function App() {
     useEffect(() => {
         document.title = "Tselmuun's portfolio";
-        console.log(window.matchMedia("prefers-color-scheme: dark").matches);
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches || localStorage.theme === "dark") {
+            document.documentElement.classList.add("dark");
+            localStorage.theme = "dark";
+        } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.theme = "light";
+        }
     }, []);
 
     const leaveMessage = async (e: FormEvent<HTMLFormElement>) => {
@@ -42,15 +48,26 @@ function App() {
 
     return (
         <>
-            <div className="flex flex-col w-screen box-border px-12 py-5">
+            <div className="dark:text-white flex flex-col w-full box-border px-12 py-5 bg-white dark:bg-[#131313]">
                 <div className="w-full flex justify-between mb-8">
                     <Link
                         to="/"
-                        className="text-[#430297] font-semibold text-2xl"
+                        className="text-[#430297] font-semibold text-2xl dark:text-white"
                     >
                         Tselmuun
                     </Link>
-                    <div className="h-[38px] w-[38px] bg-[#320073] rounded-md flex justify-center items-center shadow-[4px_4px_0_0_black] click active:shadow-[2px_2px_0_0_black] cursor-pointer">
+                    <div 
+                        className="h-[38px] w-[38px] bg-[#320073] rounded-md flex justify-center items-center shadow-[4px_4px_0_0_black] click active:shadow-[2px_2px_0_0_black] cursor-pointer"
+                        onClick = {() => {
+                            if (localStorage.theme === "dark") {
+                                localStorage.theme = "light";
+                                document.documentElement.classList.remove("dark");
+                            } else {
+                                localStorage.theme = "dark";
+                                document.documentElement.classList.add("dark");
+                            }
+                        }}
+                    >
                         <FontAwesomeIcon
                             icon={faMoon}
                             className="text-white text-2xl"
@@ -70,7 +87,7 @@ function App() {
                             <h1 className="font-bold text-3xl mb-5">
                                 Hi, I am Tselmuun.
                             </h1>
-                            <p className="w-2/3 min-w-[250px]">
+                            <p className="w-2/3 min-w-[250px] dark:opacity-50">
                                 I am a full stack developer who is passionate in
                                 software development.
                             </p>
@@ -78,13 +95,13 @@ function App() {
                         <div className="w-full flex flex-col">
                             <a
                                 href = "#projects"
-                                className="border-[1px] border-black flex justify-center w-56 py-[6px] rounded-md mb-6 font-bold shadow-[4px_4px_0_0_rgb(67,2,151,100)] click active:shadow-[2px_2px_0_0_rgb(67,2,151,100)]"
+                                className="dark:shadow-white border-[1px] border-black dark:bg-[#934FEC] flex justify-center w-56 py-[6px] rounded-md mb-6 font-bold shadow-[4px_4px_0_0_rgb(67,2,151,100)] click active:shadow-[2px_2px_0_0_rgb(67,2,151,100)] "
                             >
                                 Browse projects
                             </a>
                             <a
                                 href = "#contact"
-                                className="bg-[#934FEC] flex justify-center w-56 py-[6px] rounded-md text-white font-semibold shadow-[4px_4px_0_0_black] click active:shadow-[2px_2px_0_0_black]"
+                                className="bg-[#934FEC] dark:bg-white dark:text-black dark:shadow-[4px_4px_0_0_rgb(67,2,151,100)] flex justify-center w-56 py-[6px] rounded-md text-white font-semibold shadow-[4px_4px_0_0_black] click active:shadow-[2px_2px_0_0_black]"
                             >
                                 Contact me
                             </a>
@@ -125,7 +142,7 @@ function App() {
                         Contact
                     </h1>
                     <form 
-                        className = "w-full flex flex-col items-start"
+                        className = "w-full flex flex-col items-start dark:text-black"
                         onSubmit = {async e => await leaveMessage(e)}
                     >
                         <input type = "email" placeholder = "Contact email" className = "input" required />
@@ -133,7 +150,7 @@ function App() {
                         <textarea rows = {5} className = "resize-none input" placeholder = "Message" required />
                         <button 
                             type = "submit"
-                            className = "bg-[#934FEC] text-white px-4 py-2 font-semibold click rounded-md shadow-[4px_4px_0_0_black] active:shadow-[2px_2px_0_0_black]"
+                            className = "dark:shadow-[4px_4px_0_0_rgb(67,2,151,100)] dark:active:shadow-[2px_2px_0_0_rgb(67,2,151,100)] bg-[#934FEC] text-white dark:text-black dark:bg-white px-4 py-2 font-semibold click rounded-md shadow-[4px_4px_0_0_black] active:shadow-[2px_2px_0_0_black]"
                         >
                             Leave a message
                         </button>
