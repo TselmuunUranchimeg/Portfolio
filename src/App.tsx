@@ -1,7 +1,8 @@
-import { useEffect, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
+import { faSun } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import profile from "./assets/Profile.png";
 import PastItem, { PastItemInterface } from "./components/Past";
@@ -31,11 +32,14 @@ const history: Array<PastItemInterface> = [
 ];
 
 function App() {
+    const [dark, setDark] = useState(false);
+
     useEffect(() => {
         document.title = "Tselmuun's portfolio";
         if (window.matchMedia("(prefers-color-scheme: dark)").matches || localStorage.theme === "dark") {
             document.documentElement.classList.add("dark");
             localStorage.theme = "dark";
+            setDark(true);
         } else {
             document.documentElement.classList.remove("dark");
             localStorage.theme = "light";
@@ -57,7 +61,7 @@ function App() {
                         Tselmuun
                     </Link>
                     <div 
-                        className="h-[38px] w-[38px] bg-[#320073] rounded-md flex justify-center items-center shadow-[4px_4px_0_0_black] click active:shadow-[2px_2px_0_0_black] cursor-pointer"
+                        className="h-[38px] w-[38px] bg-[#320073] dark:bg-[#f1a00a] rounded-md flex justify-center items-center shadow-[4px_4px_0_0_black] click active:shadow-[2px_2px_0_0_black] dark:shadow-[4px_4px_0_0_white] dark:active:shadow-[2px_2px_0_0_white] cursor-pointer"
                         onClick = {() => {
                             if (localStorage.theme === "dark") {
                                 localStorage.theme = "light";
@@ -66,12 +70,14 @@ function App() {
                                 localStorage.theme = "dark";
                                 document.documentElement.classList.add("dark");
                             }
+                            setDark(!dark);
                         }}
                     >
-                        <FontAwesomeIcon
-                            icon={faMoon}
-                            className="text-white text-2xl"
-                        />
+                        {
+                            dark
+                            ? <FontAwesomeIcon className = "text-white text-2xl" icon = {faSun} />
+                            : <FontAwesomeIcon className = "text-white text-2xl" icon = {faMoon} />
+                        }
                     </div>
                 </div>
                 <div className="w-full flex mb-8">
@@ -150,7 +156,7 @@ function App() {
                         <textarea rows = {5} className = "resize-none input" placeholder = "Message" required />
                         <button 
                             type = "submit"
-                            className = "dark:shadow-[4px_4px_0_0_rgb(67,2,151,100)] dark:active:shadow-[2px_2px_0_0_rgb(67,2,151,100)] bg-[#934FEC] text-white dark:text-black dark:bg-white px-4 py-2 font-semibold click rounded-md shadow-[4px_4px_0_0_black] active:shadow-[2px_2px_0_0_black]"
+                            className = "dark:shadow-[4px_4px_0_0_white] dark:active:shadow-[2px_2px_0_0_white] bg-[#934FEC] text-white px-4 py-2 font-semibold click rounded-md shadow-[4px_4px_0_0_black] active:shadow-[2px_2px_0_0_black]"
                         >
                             Leave a message
                         </button>
